@@ -1,0 +1,36 @@
+{
+  "ftp": {
+    "host": "",
+    "port": "",
+    "username": "",
+    "password": ""
+  },
+  "domains": {
+    "from": "old-domain.com",
+    "to": "new-domain.com"
+  },
+  "directory": {
+    "from_dir": "",
+    "to_dir": "",
+    "ignore_delete": [],
+    "ignore_dirs": []
+  },
+  "database": {
+    "table_prefix": "",
+    "old": {
+      "host": "",
+      "name": "",
+      "user": "",
+      "password": ""
+    },
+    "new": {
+      "host": "",
+      "name": "",
+      "user": "",
+      "password": ""
+    }
+  },
+  "settings": {
+    "blog_public": 0
+  }
+}
