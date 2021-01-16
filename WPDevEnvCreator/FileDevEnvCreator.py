@@ -20,18 +20,23 @@ class FileDevEnvCreator:
         self.old_db_config = self.db_config['old']
         self.new_db_config = self.db_config['new']
 
+        self.domain_config = self.config['domains']
+        self.old_domain = self.domain_config['from']
+        self.new_domain = self.domain_config['to']
+
     def createFileDevEnv(self):
         ssh_utility = SSHUtility(self.ssh_config['host'], self.ssh_config['user'], self.ssh_config['password'])
 
-        #clean destination
         self.clean_destination(ssh_utility)
-
-        #copy live dir to test
         self.copy_live_env_to_test(ssh_utility)
-
-        #self.replace_db_credentials_in_config(ssh_utility)
+        self.replace_in_dir(ssh_utility)
+        self.replace_db_credentials_in_config(ssh_utility)
 
         ssh_utility.close()
+
+    def replace_in_dir(self, ssh_utility):
+        cmd = "find "+self.to_dir+" -o -type f -print0 | xargs -0 sed -i 's/"+self.old_domain+"/"+self.new_domain+"/g'"
+        ssh_utility.execute_cmd(cmd, show_output=True, show_error=False)
 
     def clean_destination(self, ssh_utility):
         ignore_delete_dirs = []
