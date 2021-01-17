@@ -58,7 +58,7 @@ class FileDevEnvCreator:
         for dir in self.ignore_dirs:
             copy_cmd += "--exclude="+dir
 
-        copy_cmd += " " + self.from_dir + "/* " + self.to_dir
+        copy_cmd += " " + self.from_dir + "/. " + self.to_dir
 
         Logger.log(copy_cmd, "FileDevEnvCreator")
 
