@@ -84,11 +84,15 @@ class DBUtility():
         SQL_FILE_PATH = os.path.join(self.path, self.file_name) + ".sql"
         os.remove(SQL_FILE_PATH)
 
-    def set_no_index(self, db_host, db_name, db_user, db_password, table_prefix):
+    def run_command(self, db_host, db_name, db_user, db_password, command):
         auth_data = "-h " + db_host + " -u " + db_user + " -p" + db_password + " " + db_name
 
-        dumpcmd = "sudo mysql " + auth_data + " --execute=\"update "+table_prefix+"options set option_value = '0' where option_name = 'blog_public';\""
+        dumpcmd = "sudo mysql " + auth_data + " --execute=\""+command+"\""
 
         Logger.log(dumpcmd, "DBUtility")
 
         os.system(dumpcmd)
+
+    def run_commands(self, db_host, db_name, db_user, db_password, commands):
+        for command in commands:
+            self.run_command(db_host, db_name, db_user, db_password, command)

@@ -20,6 +20,8 @@ class DBDevEnvCreator:
         old_domain = domain_config['from']
         new_domain = domain_config['to']
 
+        sql_commands = db_config['commands']
+
         self.db_utility.clear_db(new_db_config['host'], new_db_config['name'], new_db_config['user'], new_db_config['password'])
 
         self.db_utility.download_db(old_db_config['host'], old_db_config['name'], old_db_config['user'], old_db_config['password'])
@@ -31,7 +33,7 @@ class DBDevEnvCreator:
         self.db_utility.upload_db(new_db_config['host'], new_db_config['name'], new_db_config['user'], new_db_config['password'])
 
         # set options in db
-        self.db_utility.set_no_index(new_db_config['host'], new_db_config['name'], new_db_config['user'], new_db_config['password'], table_prefix)
+        self.db_utility.run_commands(new_db_config['host'], new_db_config['name'], new_db_config['user'], new_db_config['password'], sql_commands)
 
         #delete downloaded db file
         self.db_utility.clean_up()
