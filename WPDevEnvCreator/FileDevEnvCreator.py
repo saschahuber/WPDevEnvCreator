@@ -29,13 +29,18 @@ class FileDevEnvCreator:
 
         self.clean_destination(ssh_utility)
         self.copy_live_env_to_test(ssh_utility)
-        self.replace_in_dir(ssh_utility)
+        self.replace_domains(ssh_utility)
         self.replace_db_credentials_in_config(ssh_utility)
 
         ssh_utility.close()
 
-    def replace_in_dir(self, ssh_utility):
-        cmd = "find "+self.to_dir+" -o -type f -print0 | xargs -0 sed -i 's/"+self.old_domain+"/"+self.new_domain+"/g'"
+    def replace_domains(self, ssh_utility):
+        old_domain_code = self.old_domain.replace(".", "[.]")
+
+        cmd = "find "+self.to_dir+"/. -type f -exec sed -i 's/"+old_domain_code+"/"+self.new_domain+"/g' {} +"
+
+        #cmd = "find "+self.to_dir+" -o -type f -print0 | xargs -0 sed -i 's/"+old_domain_code+"/"+self.new_domain+"/g'"
+        Logger.log(cmd, "FileDevEnvCreator")
         ssh_utility.execute_cmd(cmd, show_output=True, show_error=False)
 
     def clean_destination(self, ssh_utility):

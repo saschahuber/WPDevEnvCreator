@@ -87,7 +87,7 @@ class DBUtility():
     def set_no_index(self, db_host, db_name, db_user, db_password, table_prefix):
         auth_data = "-h " + db_host + " -u " + db_user + " -p" + db_password + " " + db_name
 
-        dumpcmd = "sudo mysql " + auth_data + "--execute=\"update "+table_prefix+"options set option_value = '0' where option_name = 'blog_public';\""
+        dumpcmd = "sudo mysql " + auth_data + " --execute=\"update "+table_prefix+"options set option_value = '0' where option_name = 'blog_public';\""
 
         Logger.log(dumpcmd, "DBUtility")
 
