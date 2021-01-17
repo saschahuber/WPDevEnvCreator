@@ -16,6 +16,11 @@ class DBUtility():
     def clear_db(self, db_host, db_name, db_user, db_password):
         SQL_FILE_PATH = os.path.join(self.path, self.file_name)+".sql"
 
+        try:
+            os.stat(self.path)
+        except:
+            os.makedirs(self.path)
+
         auth_data = "-h " + db_host + " -u " + db_user + " -p" + db_password + " " + db_name
 
         del_cmd1 = "mysqldump -d -h " + db_host + " -u " + db_user + " -p" + db_password + " --add-drop-table " + db_name + " > " + pipes.quote(SQL_FILE_PATH)
