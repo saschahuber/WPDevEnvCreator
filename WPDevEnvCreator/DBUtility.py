@@ -21,6 +21,8 @@ class DBUtility():
         except:
             os.makedirs(self.path)
 
+        Logger.log("Clearing destination database " + db_name, "DBUtility")
+
         auth_data = "-h " + db_host + " -u " + db_user + " -p" + db_password + " " + db_name
 
         del_cmd1 = "mysqldump -d -h " + db_host + " -u " + db_user + " -p" + db_password + " --add-drop-table " + db_name + " > " + pipes.quote(SQL_FILE_PATH)

@@ -22,19 +22,19 @@ class DBDevEnvCreator:
 
         self.db_utility.clear_db(new_db_config['host'], new_db_config['name'], new_db_config['user'], new_db_config['password'])
 
-        #self.db_utility.download_db(old_db_config['host'], old_db_config['name'], old_db_config['user'], old_db_config['password'])
+        self.db_utility.download_db(old_db_config['host'], old_db_config['name'], old_db_config['user'], old_db_config['password'])
 
-        #self.db_utility.replace_in_db(old_domain, new_domain)
+        self.db_utility.replace_in_db(old_domain, new_domain)
 
-        #self.db_utility.replace_in_db(old_db_config['name'], new_db_config['name'])
+        self.db_utility.replace_in_db(old_db_config['name'], new_db_config['name'])
 
-        #self.db_utility.upload_db(new_db_config['host'], new_db_config['name'], new_db_config['user'], new_db_config['password'])
+        self.db_utility.upload_db(new_db_config['host'], new_db_config['name'], new_db_config['user'], new_db_config['password'])
 
         # set options in db
 
         #self.db_utility.execute_command()
 
         #delete downloaded db file
-        #self.db_utility.clean_up()
+        self.db_utility.clean_up()
 
         pass
