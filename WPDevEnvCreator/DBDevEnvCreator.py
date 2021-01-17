@@ -31,8 +31,7 @@ class DBDevEnvCreator:
         self.db_utility.upload_db(new_db_config['host'], new_db_config['name'], new_db_config['user'], new_db_config['password'])
 
         # set options in db
-
-        #self.db_utility.execute_command()
+        self.db_utility.set_no_index(new_db_config['host'], new_db_config['name'], new_db_config['user'], new_db_config['password'], table_prefix)
 
         #delete downloaded db file
         self.db_utility.clean_up()
