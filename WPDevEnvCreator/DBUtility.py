@@ -38,7 +38,7 @@ class DBUtility():
         except:
             os.makedirs(self.path)
 
-        Logger.log("Starting backup of database " + db_name, "DBUtility")
+        Logger.log("Starting download of database " + db_name, "DBUtility")
 
         auth_data = "-h " + db_host + " -u " + db_user + " -p" + db_password + " " + db_name
 
@@ -68,7 +68,7 @@ class DBUtility():
         except:
             os.makedirs(self.path)
 
-        Logger.log("Starting backup of database " + db_name, "DBUtility")
+        Logger.log("Starting upload of database " + db_name, "DBUtility")
 
         auth_data = "-h " + db_host + " -u " + db_user + " -p" + db_password + " " + db_name
 
