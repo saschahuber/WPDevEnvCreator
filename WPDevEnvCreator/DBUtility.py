@@ -23,7 +23,7 @@ class DBUtility():
         del_cmd2 = "mysql " + auth_data + " < " + pipes.quote(SQL_FILE_PATH)
         os.system(del_cmd2)
 
-        self.clean_up()
+        #self.clean_up()
 
     def download_db(self, db_host, db_name, db_user, db_password):
         SQL_FILE_PATH = os.path.join(self.path, self.file_name)+".sql"

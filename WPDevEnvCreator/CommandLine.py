@@ -9,7 +9,7 @@ from WPDevEnvCreator.Utils import Logger
 def main():
     parser = argparse.ArgumentParser(description='Create a dev-env of your wordpress site!')
     parser.add_argument('--config', type=str, help='Path to the json-config-file')
-    parser.add_argument('--temp_dir', type=str, default='/temp/WBDevEnvCreator/', help='Where to store temp-files?')
+    parser.add_argument('--temp_dir', type=str, default='/temp/WPDevEnvCreator/', help='Where to store temp-files?')
     parser.add_argument('--logging', action='store_true', help='Write logs?')
 
     args = parser.parse_args()
