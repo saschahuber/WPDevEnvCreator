@@ -18,12 +18,12 @@ def main():
 
     Logger.LOGGING = args.logging
 
-    Logger.Logger.log(config_file)
+    Logger.Logger.log(config_file, "CommandLine")
 
     with open(config_file) as json_file:
         config = json.load(json_file)
 
-    Logger.Logger.log(str(config))
+    Logger.Logger.log(str(config), "CommandLine")
 
     devEnvCreator = WPDevEnvCreator(config, args.temp_dir)
 

@@ -20,6 +20,9 @@ class DBDevEnvCreator:
         old_domain = domain_config['from']
         new_domain = domain_config['to']
 
+        self.db_utility.clear_db(new_db_config['host'], new_db_config['name'], new_db_config['user'],
+                                    new_db_config['password'])
+
         self.db_utility.download_db(old_db_config['host'], old_db_config['name'], old_db_config['user'],
                                     old_db_config['password'])
 

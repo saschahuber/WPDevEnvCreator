@@ -11,5 +11,5 @@ class WPDevEnvCreator:
 
     def createDevEnv(self):
         self.db_dev_env_creator.createDBDevEnv()
-        self.file_dev_env_creator.createFileDevEnv()
+        #self.file_dev_env_creator.createFileDevEnv()
         return

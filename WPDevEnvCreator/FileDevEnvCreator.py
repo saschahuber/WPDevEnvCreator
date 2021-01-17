@@ -48,7 +48,7 @@ class FileDevEnvCreator:
         for dir in ignore_delete_dirs:
             delete_cmd += " !(" + dir + ") "
 
-        Logger.log(delete_cmd)
+        Logger.log(delete_cmd, "FileDevEnvCreator")
 
         ssh_utility.execute_cmd(delete_cmd)
 
@@ -60,7 +60,7 @@ class FileDevEnvCreator:
 
         copy_cmd += " " + self.from_dir + "/* " + self.to_dir
 
-        Logger.log(copy_cmd)
+        Logger.log(copy_cmd, "FileDevEnvCreator")
 
         ssh_utility.execute_cmd(copy_cmd)
 

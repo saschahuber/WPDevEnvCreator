@@ -13,6 +13,18 @@ class DBUtility():
         self.file_name = file_name
         pass
 
+    def clear_db(self, db_host, db_name, db_user, db_password):
+        SQL_FILE_PATH = os.path.join(self.path, self.file_name)+".sql"
+
+        auth_data = "-h " + db_host + " -u " + db_user + " -p" + db_password + " " + db_name
+
+        del_cmd1 = "mysqldump -d -h " + db_host + " -u " + db_user + " -p" + db_password + " --add-drop-table " + db_name + " > " + pipes.quote(SQL_FILE_PATH)
+        os.system(del_cmd1)
+        del_cmd2 = "mysql " + auth_data + " < " + pipes.quote(SQL_FILE_PATH)
+        os.system(del_cmd2)
+
+        self.clean_up()
+
     def download_db(self, db_host, db_name, db_user, db_password):
         SQL_FILE_PATH = os.path.join(self.path, self.file_name)+".sql"
 
@@ -21,13 +33,13 @@ class DBUtility():
         except:
             os.makedirs(self.path)
 
-        Logger.log("Starting backup of database " + db_name, "DB_BACKUP_"+self.file_name)
+        Logger.log("Starting backup of database " + db_name, "DBUtility")
 
         auth_data = "-h " + db_host + " -u " + db_user + " -p" + db_password + " " + db_name
 
         dumpcmd = "sudo mysqldump " + auth_data + " > " + pipes.quote(SQL_FILE_PATH)
 
-        Logger.log(dumpcmd, "DB_BACKUP_" + self.file_name)
+        Logger.log(dumpcmd, "DBUtility")
 
         os.system(dumpcmd)
 
@@ -51,13 +63,13 @@ class DBUtility():
         except:
             os.makedirs(self.path)
 
-        Logger.log("Starting backup of database " + db_name, "DB_BACKUP_" + self.file_name)
+        Logger.log("Starting backup of database " + db_name, "DBUtility")
 
         auth_data = "-h " + db_host + " -u " + db_user + " -p" + db_password + " " + db_name
 
         upload_cmd = "sudo mysql " + auth_data + " < " + pipes.quote(SQL_FILE_PATH)
 
-        Logger.log(upload_cmd, "DB_BACKUP_" + self.file_name)
+        Logger.log(upload_cmd, "DBUtility")
 
         os.system(upload_cmd)
 

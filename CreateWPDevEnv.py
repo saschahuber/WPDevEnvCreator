@@ -16,12 +16,12 @@ if __name__ == "__main__":
 
     Logger.LOGGING = args.logging
 
-    Logger.Logger.log(config_file)
+    Logger.Logger.log(config_file, "CreateWPDevEnv")
 
     with open(config_file) as json_file:
         config = json.load(json_file)
 
-    Logger.Logger.log(str(config))
+    Logger.Logger.log(str(config), "CreateWPDevEnv")
 
     devEnvCreator = WPDevEnvCreator(config, args.temp_dir)
 
